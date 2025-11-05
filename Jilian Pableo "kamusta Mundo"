@@ -1,0 +1,19 @@
+// Namespace declaration
+using System;
+
+namespace KamustaMundoApp
+{
+    // Main class of the application
+    class Program
+    {
+        // Main method: Entry point of the program
+        static void Main(string[] args)
+        {
+            // Prints "Kamusta Mundo!" to the console
+            Console.WriteLine("Kamusta Mundo!");
+
+            // Keeps the console window open until a key is pressed
+            Console.ReadKey();
+        }
+    }
+}
