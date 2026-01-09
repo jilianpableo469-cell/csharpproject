@@ -1,34 +1,37 @@
 using System;
 
-class Task2
+class Task3
 {
-    static void Main(string[] args)
+    static void Main()
     {
-        // 2D Jagged Array Initialization
-        // Row 0: Even numbers
-        // Row 1: Odd numbers
-        int[][] numberMatrix = new int[][]
+        // Declare and initialize the array
+        int[] numbers = { 3, 7, 12, 19, 21, 25, 30 };
+
+        // Ask the user for input
+        Console.Write("Enter a number to search for: ");
+        int searchNumber = int.Parse(Console.ReadLine());
+
+        bool found = false;
+
+        // Use a for loop to go through the array
+        for (int i = 0; i < numbers.Length; i++)
         {
-            new int[] { 2, 4, 6, 8, 10 },
-            new int[] { 1, 3, 5, 7, 9 }
-        };
+            // Compare the user input to each element
+            if (numbers[i] == searchNumber)
+            {
+                Console.WriteLine("Number found at position " + i);
+                found = true;
+                break; // Stop searching immediately
+            }
+        }
 
-        Console.WriteLine("The number matrix has been initialized.");
+        // If the number was not found
+        if (!found)
+        {
+            Console.WriteLine("Number not found in the list.");
+        }
 
-        // PUZZLE DIGIT EXTRACTION
-        // Digit 1: Row 1, Index 3 → value = 7
-        int digit1 = numberMatrix[1][3];
-
-        // Digit 2: Row 0, Index 0 → value = 2
-        int digit2 = numberMatrix[0][0];
-
-        // Digit 3: Row 1, Index 4 → value = 9
-        int digit3 = numberMatrix[1][4];
-
-        // Combine digits into a single string key
-        string finalKey = $"{digit1}{digit2}{digit3}";
-
-        // Final Output
-        Console.WriteLine("The password is: " + finalKey);
+        // Keep the console window open
+        Console.ReadLine();
     }
 }
