@@ -1,0 +1,77 @@
+using System;
+
+class ArithmeticCalculator
+{
+    static void Main()
+    {
+        char choice = 'Y';
+
+        while (choice == 'Y' || choice == 'y')
+        {
+            Console.WriteLine("Press any following key to perform an arithmetic operation:");
+            Console.WriteLine("1 - Addition");
+            Console.WriteLine("2 - Subtraction");
+            Console.WriteLine("3 - Multiplication");
+            Console.WriteLine("4 - Division");
+
+            int operation = Convert.ToInt32(Console.ReadLine());
+
+            Console.Write("Enter Value 1: ");
+            double value1 = Convert.ToDouble(Console.ReadLine());
+
+            Console.Write("Enter Value 2: ");
+            double value2 = Convert.ToDouble(Console.ReadLine());
+
+            switch (operation)
+            {
+                case 1:
+                    Console.WriteLine($"{value1} + {value2} = {Add(value1, value2)}");
+                    break;
+
+                case 2:
+                    Console.WriteLine($"{value1} - {value2} = {Subtract(value1, value2)}");
+                    break;
+
+                case 3:
+                    Console.WriteLine($"{value1} * {value2} = {Multiply(value1, value2)}");
+                    break;
+
+                case 4:
+                    if (value2 != 0)
+                        Console.WriteLine($"{value1} / {value2} = {Divide(value1, value2)}");
+                    else
+                        Console.WriteLine("Error: Division by zero is not allowed.");
+                    break;
+
+                default:
+                    Console.WriteLine("Invalid choice.");
+                    break;
+            }
+
+            Console.Write("Do you want to continue again (Y/N)? ");
+            choice = Convert.ToChar(Console.ReadLine());
+            Console.WriteLine();
+        }
+    }
+
+    // Separate methods
+    static double Add(double a, double b)
+    {
+        return a + b;
+    }
+
+    static double Subtract(double a, double b)
+    {
+        return a - b;
+    }
+
+    static double Multiply(double a, double b)
+    {
+        return a * b;
+    }
+
+    static double Divide(double a, double b)
+    {
+        return a / b;
+    }
+}
