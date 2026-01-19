@@ -1,0 +1,91 @@
+using System;
+
+class StudentReportCard
+{
+    static void Main()
+    {
+        int totalStudents;
+
+        Console.Write("Enter Total Students : ");
+        totalStudents = int.Parse(Console.ReadLine());
+
+        // Multi-dimensional arrays
+        string[] names = new string[totalStudents];
+        int[,] marks = new int[totalStudents, 3]; // English, Math, Computer
+        int[] total = new int[totalStudents];
+
+        // Input section
+        for (int i = 0; i < totalStudents; i++)
+        {
+            Console.Write("\nEnter Student Name : ");
+            names[i] = Console.ReadLine();
+
+            marks[i, 0] = ReadMarks("English");
+            marks[i, 1] = ReadMarks("Math");
+            marks[i, 2] = ReadMarks("Computer");
+
+            total[i] = marks[i, 0] + marks[i, 1] + marks[i, 2];
+
+            Console.WriteLine("*********************************************");
+        }
+
+        // Sorting in descending order by total marks
+        for (int i = 0; i < totalStudents - 1; i++)
+        {
+            for (int j = i + 1; j < totalStudents; j++)
+            {
+                if (total[i] < total[j])
+                {
+                    // Swap total
+                    int tempTotal = total[i];
+                    total[i] = total[j];
+                    total[j] = tempTotal;
+
+                    // Swap names
+                    string tempName = names[i];
+                    names[i] = names[j];
+                    names[j] = tempName;
+
+                    // Swap marks
+                    for (int k = 0; k < 3; k++)
+                    {
+                        int tempMark = marks[i, k];
+                        marks[i, k] = marks[j, k];
+                        marks[j, k] = tempMark;
+                    }
+                }
+            }
+        }
+
+        // Report Card Output
+        Console.WriteLine("\n**************** Report Card ****************");
+
+        for (int i = 0; i < totalStudents; i++)
+        {
+            Console.WriteLine(
+                $"Student Name: {names[i]}, Position: {i + 1}, Total: {total[i]}/300");
+            Console.WriteLine("*********************************************");
+        }
+    }
+
+    // Method for marks input validation (0–100)
+    static int ReadMarks(string subject)
+    {
+        int marks;
+        bool valid;
+
+        do
+        {
+            Console.Write($"Enter {subject} Marks (Out Of 100) : ");
+            valid = int.TryParse(Console.ReadLine(), out marks) && marks >= 0 && marks <= 100;
+
+            if (!valid)
+            {
+                Console.WriteLine("Invalid input! Please enter marks between 0 and 100.");
+            }
+
+        } while (!valid);
+
+        return marks;
+    }
+}
